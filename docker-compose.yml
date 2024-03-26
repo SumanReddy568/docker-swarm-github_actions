@@ -1,9 +1,12 @@
 version: '3.8'
 
 services:
-  ghost:
-    image: ghost:latest
-    ports:
-      - "2368:2368"
+  server_ram_fetch:
+    image: sumanreddy568/server_ram_fetch:latest
     deploy:
-      replicas: 3
+      replicas: 1
+      restart_policy:
+        condition: any
+    ports:
+      - "8085:8080"  # Mapping container port 8080 to host port 8085
+
