@@ -18,7 +18,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/server_ram_fetch:latest .        
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/server_ram_fetch:latest .
+        
     - name: Push Docker image
       uses: docker/build-push-action@v2
       with:
@@ -32,7 +33,8 @@ jobs:
       with:
         host: ${{ secrets.SWARM_HOST }}
         port: ${{ secrets.SWARM_PORT }}
-        private-key: ${{ secrets.SWARM_PRIVATE_KEY }}
+        username: ${{ secrets.SWARM_USERNAME }}
+        key: ${{ secrets.SWARM_PRIVATE_KEY }}
         script: |
           docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
           docker pull ${{ secrets.DOCKER_USERNAME }}/server_ram_fetch:latest
