@@ -1,4 +1,5 @@
 #create deployment and service
+
 from kubernetes import client, config
 
 # Load Kubernetes configuration

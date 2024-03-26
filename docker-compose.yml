@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   server_ram_fetch:
+
     image: sumanreddy568/server_ram_fetch:latest
     deploy:
       replicas: 1

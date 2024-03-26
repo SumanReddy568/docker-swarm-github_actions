@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+
     cpu_metric = psutil.cpu_percent()
     mem_metric = psutil.virtual_memory().percent
     Message = None
