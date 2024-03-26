@@ -1,0 +1,24 @@
+Step 1: Setup Docker Swarm Cluster on Localhost
+
+Initialize a Docker Swarm cluster on your localhost, just like before:
+
+# Initialize Docker Swarm
+docker swarm init --advertise-addr 127.0.0.1
+
+Step 2: Create a Worker Node
+
+Create a new Docker container to act as a worker node. You can expose specific ports on this container to simulate services running on different nodes.
+
+# Create a Docker container acting as a worker node
+docker run -d --name worker-node -p 8081:8080 docker:stable-dind
+
+-d runs the container in the background.
+--name worker-node gives the container a name.
+-p 8081:8080 maps port 8080 of the container to port 8081 on the host. Adjust the ports as 
+
+Step 3: Join Worker Node to Swarm
+
+Join the newly created container to the Docker Swarm cluster as a worker node:
+
+# Get join token from the manager node
+docker swarm join-token worker
