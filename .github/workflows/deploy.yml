@@ -28,7 +28,7 @@ jobs:
       with:
         host: ${{ secrets.SWARM_HOST }}
         port: ${{ secrets.SWARM_PORT }}
-        # private-key: ${{ secrets.SWARM_PRIVATE_KEY }} # Uncomment this line if needed
+        private-key: ${{ secrets.SWARM_PRIVATE_KEY }} 
         script: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/server_ram_fetch:latest
           docker stack deploy -c docker-compose.yml server-ram-fetch-stack
