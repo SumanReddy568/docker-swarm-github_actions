@@ -28,7 +28,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/server_ram_fetch:latest
 
-    - name: SSH into Docker Swarm host and deploy
+    - name: SSH into Docker Swarm host and start container
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SWARM_HOST }}
@@ -38,5 +38,5 @@ jobs:
         script: |
           docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
           docker pull ${{ secrets.DOCKER_USERNAME }}/server_ram_fetch:latest
-          docker stack deploy -c docker-compose.yml server-ram-fetch-stack
+          docker run -d -p 8085:8085 --name server-ram-fetch ${{ secrets.DOCKER_USERNAME }}/server_ram_fetch:latest
 
